@@ -32,7 +32,7 @@ const sessionRestore = {
     //if startupTabOption is "open a new blank task", don't save any tabs in the current task
     if (settings.get('startupTabOption') === 3) {
       for (var i = 0; i < data.state.tasks.length; i++) {
-        if (data.state.tasks[i].selectedInWindow) {
+        if (tasks.get(data.state.tasks[i].id).selectedInWindow) { //need to re-fetch the task because temporary properties have been removed
           data.state.tasks[i].tabs = []
         }
       }
@@ -179,7 +179,7 @@ const sessionRestore = {
       // create a new tab with an explanation of what happened
       var newTask = tasks.add()
       var newSessionErrorTab = tasks.get(newTask).tabs.add({
-        url: 'file://' + __dirname + '/pages/sessionRestoreError/index.html?backupLoc=' + encodeURIComponent(backupSavePath)
+        url: 'min://app/pages/sessionRestoreError/index.html?backupLoc=' + encodeURIComponent(backupSavePath)
       })
 
       browserUI.switchToTask(newTask)

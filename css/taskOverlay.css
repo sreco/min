@@ -8,6 +8,9 @@
   align-items: center;
   justify-content: center;
 }
+.dark-mode .simulated-navbar {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
 
 .task-search-input-container {
   width: 450px;
@@ -303,4 +306,25 @@ body.dark-mode #task-overlay {
 
 .dark-mode #switch-task-button {
   color: dodgerblue;
+}
+
+.tab-drop-placeholder, .task-drop-placeholder {
+  opacity: 0.25;
+}
+
+.task-container.sortable-chosen {
+  background: white;
+}
+.dark-mode .task-container.sortable-chosen {
+  background: rgb(40, 44, 52);
+}
+
+.task-tab-item.dragging-selected {
+  border-left: 3px solid cornflowerblue;
+  margin-left: -3px;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+.dark-mode .task-tab-item.dragging-selected {
+  background: rgba(255, 255, 255, 0.05) !important;
 }

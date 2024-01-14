@@ -12,7 +12,9 @@ const {
   Menu, MenuItem,
   crashReporter,
   dialog,
-  nativeTheme
+  nativeTheme,
+  shell,
+  net
 } = electron
 
 crashReporter.start({
@@ -60,7 +62,7 @@ app.commandLine.appendSwitch('disable-backgrounding-occluded-windows', 'true')
 
 var userDataPath = app.getPath('userData')
 
-const browserPage = 'file://' + __dirname + '/index.html'
+const browserPage = 'min://app/index.html'
 
 var mainMenu = null
 var secondaryMenu = null
@@ -326,6 +328,8 @@ app.on('ready', function () {
     return
   }
 
+  registerBundleProtocol(session.defaultSession)
+
   const newWin = createWindow()
 
   newWin.webContents.on('did-finish-load', function () {
@@ -458,6 +462,6 @@ app.once('ready', function() {
   placesWindow.loadURL(placesPage)
 })
 
-ipc.on('places-request', function(e, data) {
-  placesWindow.webContents.send('places-request', e.sender.id, data)
+ipc.on('places-connect', function (e) {
+  placesWindow.webContents.postMessage('places-connect', null, e.ports)
 })

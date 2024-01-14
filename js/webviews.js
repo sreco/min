@@ -29,7 +29,7 @@ function captureCurrentTab (options) {
 
 // called whenever a new page starts loading, or an in-page navigation occurs
 function onPageURLChange (tab, url) {
-  if (url.indexOf('https://') === 0 || url.indexOf('about:') === 0 || url.indexOf('chrome:') === 0 || url.indexOf('file://') === 0) {
+  if (url.indexOf('https://') === 0 || url.indexOf('about:') === 0 || url.indexOf('chrome:') === 0 || url.indexOf('file://') === 0 || url.indexOf('min://') === 0) {
     tabs.update(tab, {
       secure: true,
       url: url
@@ -104,7 +104,7 @@ const webviews = {
   placeholderRequests: [],
   asyncCallbacks: {},
   internalPages: {
-    error: urlParser.getFileURL(__dirname + '/pages/error/index.html')
+    error: 'min://app/pages/error/index.html'
   },
   events: [],
   IPCEvents: [],
@@ -171,13 +171,6 @@ const webviews = {
         y: 0 + Math.round(viewMargins[0]) + navbarHeight,
         width: window.innerWidth - Math.round(viewMargins[1] + viewMargins[3]),
         height: window.innerHeight - Math.round(viewMargins[0] + viewMargins[2]) - navbarHeight
-      }
-
-      //Electron is inconsistent in what y: 0 means: https://github.com/electron/electron/issues/35994
-      //on macOS, y: 0 places the view under the titlebar, so it needs to be shifted down by the titlebar height
-      //TODO revisit this in a future Electron version
-      if (window.platformType === 'mac' && hasSeparateTitlebar && !windowIsFullscreen) {
-        position.y += 28
       }
 
       return position
@@ -471,7 +464,7 @@ webviews.bindIPC('setSetting', function (tabId, args) {
 settings.listen(function () {
   tasks.forEach(function (task) {
     task.tabs.forEach(function (tab) {
-      if (tab.url.startsWith('file://')) {
+      if (tab.url.startsWith('min://')) {
         try {
           webviews.callAsync(tab.id, 'send', ['receiveSettingsData', settings.list])
         } catch (e) {

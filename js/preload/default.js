@@ -46,11 +46,15 @@ ipc.on('enterPictureInPicture', function (event, data) {
 })
 
 window.addEventListener('message', function (e) {
-  if (!e.origin.startsWith('file://')) {
+  if (!e.origin.startsWith('min://')) {
     return
   }
 
-  if (e.data && e.data.message && e.data.message === 'showCredentialList') {
+  if (e.data?.message === 'showCredentialList') {
     ipc.send('showCredentialList')
+  }
+
+  if (e.data?.message === 'showUserscriptDirectory') {
+    ipc.send('showUserscriptDirectory')
   }
 })

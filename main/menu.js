@@ -26,15 +26,6 @@ function buildAppMenu (options = {}) {
       }
     },
     {
-      label: l('appMenuDuplicateTab'),
-      accelerator: getFormattedKeyMapEntry('duplicateTab') || 'shift+CmdOrCtrl+d',
-      click: function (item, window, event) {
-        if (!event.triggeredByAccelerator) {
-          sendIPCToWindow(window, 'duplicateTab')
-        }
-      }
-    },
-    {
       label: l('appMenuNewPrivateTab'),
       accelerator: getFormattedKeyMapEntry('addPrivateTab') || 'shift+CmdOrCtrl+p',
       click: function (item, window, event) {
@@ -101,7 +92,7 @@ function buildAppMenu (options = {}) {
     accelerator: 'CmdOrCtrl+,',
     click: function (item, window) {
       sendIPCToWindow(window, 'addTab', {
-        url: 'file://' + __dirname + '/pages/settings/index.html'
+        url: 'min://app/pages/settings/index.html'
       })
     }
   }
