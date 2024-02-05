@@ -23,6 +23,7 @@
     "cut": "Leikkaa",
     "copy": "Kopioi", //this is a verb (as in "copy the currently-selected text")
     "paste": "Liitä",
+    "pasteAndMatchStyle": null, //missing translation
     "goBack": "Edellinen",
     "goForward": "Seuraava",
     "inspectElement": "Tutki elementtiä",
@@ -80,8 +81,8 @@
     "taskDescriptionThree": "%t, %t, ja %n lisää", //used to describe a task that has three or more tabs
     /* find in page toolbar */
     "searchInPage": "Etsi sivulta", //this is used as the placeholder text for the textbox in the find in page toolbar
-    "findMatchesSingular": "%i %t osumasta", //this and the next label are used to indicate which match is currently highlighted
-    "findMatchesPlural": "%i %t osumasta",
+    "findMatchesSingular": "osuma %i/%t", //this and the next label are used to indicate which match is currently highlighted
+    "findMatchesPlural": "osuma %i/%t",
     /* Focus mode */
     "isFocusMode": "Olet keskittyneessä tilassa.",
     "closeDialog": "OK", //used as a label for the button that closes the dialog
@@ -204,6 +205,7 @@
     "appMenuCut": "Leikkaa",
     "appMenuCopy": "Kopioi",
     "appMenuPaste": "Liitä",
+    "appMenuPasteAndMatchStyle": null, //missing translation
     "appMenuSelectAll": "Valitse kaikki",
     "appMenuFind": "Etsi",
     "appMenuView": "Näytä",
